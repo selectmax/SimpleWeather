@@ -6,9 +6,6 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-/**
- * @author Artur Vasilov
- */
 public class Weather implements Serializable {
 
     @SerializedName("main")

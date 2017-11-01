@@ -1,5 +1,6 @@
 package com.max.simpleweather.screen.weatherlist;
 
+import android.support.annotation.ColorInt;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.graphics.Color;
@@ -22,6 +23,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
 import com.max.simpleweather.R;
 import com.max.simpleweather.model.City;
 import com.max.simpleweather.screen.general.LoadingDialog;
@@ -30,10 +32,7 @@ import com.max.simpleweather.screen.general.SimpleDividerItemDecoration;
 import com.max.simpleweather.screen.weather.WeatherActivity;
 import com.max.simpleweather.screen.weather.WeatherLoader;
 
-/**
- * @author Artur Vasilov
- */
-public class  WeatherListActivity extends AppCompatActivity implements CitiesAdapter.OnItemClick, SwipeRefreshLayout.OnRefreshListener {
+public class WeatherListActivity extends AppCompatActivity implements CitiesAdapter.OnItemClick, SwipeRefreshLayout.OnRefreshListener {
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -66,29 +65,14 @@ public class  WeatherListActivity extends AppCompatActivity implements CitiesAda
         mAdapter = new CitiesAdapter(getInitialCities(), this);
         mRecyclerView.setAdapter(mAdapter);
         mLoadingView = LoadingDialog.view(getSupportFragmentManager());
+
         mSwipeRefreshLayout.setOnRefreshListener(this);
-        mSwipeRefreshLayout.setColorSchemeColors(Color.RED, Color.GREEN, Color.BLUE, Color.CYAN);
+        mSwipeRefreshLayout.setColorSchemeColors(Color.LTGRAY);
 
         cities = getInitialCities();
 
         load(cities, false);
 
-
-        /**
-         * TODO : task
-         *
-         * 1) Load all cities forecast using one or multiple loaders
-         * 2) Try to run these requests as most parallel as possible
-         * or better do as less requests as possible
-         * 3) Show loading indicator during loading process
-         * 4) Allow to update forecasts with SwipeRefreshLayout
-         * 5) Handle configuration changes
-         *
-         * Note that for the start point you only have cities names, not ids,
-         * so you can't load multiple cities in one request.
-         *
-         * But you should think how to manage this case. I suggest you to start from reading docs mindfully.
-         */
     }
 
     @Override
@@ -99,10 +83,10 @@ public class  WeatherListActivity extends AppCompatActivity implements CitiesAda
             public void run() {
                 mSwipeRefreshLayout.setRefreshing(false);
             }
-        },4000);
+        }, 4000);
     }
 
-    private class WeatherCallbacks implements LoaderManager.LoaderCallbacks<City>{
+    private class WeatherCallbacks implements LoaderManager.LoaderCallbacks<City> {
 
         private City city;
         private String cityName;
@@ -131,22 +115,22 @@ public class  WeatherListActivity extends AppCompatActivity implements CitiesAda
         }
     }
 
-    private void loadWeather (boolean restart, City city, String cityName, Integer id) {
-         mLoadingView.showLoadingIndicator();
+    private void loadWeather(boolean restart, City city, String cityName, Integer id) {
+        mLoadingView.showLoadingIndicator();
 
-         LoaderManager.LoaderCallbacks<City> callbacks = new WeatherCallbacks(city, cityName);
+        LoaderManager.LoaderCallbacks<City> callbacks = new WeatherCallbacks(city, cityName);
 
-         if (restart) {
-             getSupportLoaderManager().restartLoader(id, Bundle.EMPTY, callbacks);
-         } else {
-             getSupportLoaderManager().initLoader(id, Bundle.EMPTY, callbacks);
-         }
+        if (restart) {
+            getSupportLoaderManager().restartLoader(id, Bundle.EMPTY, callbacks);
+        } else {
+            getSupportLoaderManager().initLoader(id, Bundle.EMPTY, callbacks);
+        }
     }
 
-    private void load(List<City> cities, boolean restart){
+    private void load(List<City> cities, boolean restart) {
         for (int i = 0; i < cities.size(); i++) {
             String cityName = cities.get(i).getName();
-            loadWeather(restart, cities.get(i), cityName, i+1);
+            loadWeather(restart, cities.get(i), cityName, i + 1);
         }
     }
 
@@ -166,18 +150,17 @@ public class  WeatherListActivity extends AppCompatActivity implements CitiesAda
     }
 
 
-
-
-    private List<City> sortAllCities (List<City> cities){
-        Collections.sort(cities, new Comparator<City>(){
+    private List<City> sortAllCities(List<City> cities) {
+        Collections.sort(cities, new Comparator<City>() {
             @Override
             public int compare(City t0, City t1) {
                 return t0.getName().compareTo(t1.getName());
             }
-        }); return cities;
+        });
+        return cities;
     }
 
-    private void showError(){
+    private void showError() {
         mLoadingView.hideLoadingIndicator();
         Snackbar snackbar = Snackbar.make(mRecyclerView, "Error loading weather", Snackbar.LENGTH_LONG)
                 .setAction("Retry", v -> load(cities, true));

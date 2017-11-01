@@ -8,9 +8,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import com.max.simpleweather.BuildConfig;
 
-/**
- * @author Artur Vasilov
- */
 public final class ApiFactory {
 
     private static OkHttpClient sClient;

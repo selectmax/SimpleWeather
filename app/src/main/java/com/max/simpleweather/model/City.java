@@ -8,9 +8,6 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * @author Artur Vasilov
- */
 public class City implements Serializable {
 
     @SerializedName("name")

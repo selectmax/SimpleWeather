@@ -17,9 +17,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import com.max.simpleweather.R;
 
-/**
- * @author Artur Vasilov
- */
 public class LoadingDialog extends DialogFragment {
 
     private static final Handler HANDLER = new Handler(Looper.getMainLooper());

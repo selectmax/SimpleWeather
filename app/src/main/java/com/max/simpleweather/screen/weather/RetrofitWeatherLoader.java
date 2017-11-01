@@ -11,9 +11,6 @@ import retrofit2.Response;
 import com.max.simpleweather.model.City;
 import com.max.simpleweather.network.ApiFactory;
 
-/**
- * @author Artur Vasilov
- */
 public class RetrofitWeatherLoader extends Loader<City> {
 
     private final Call<City> mCall;

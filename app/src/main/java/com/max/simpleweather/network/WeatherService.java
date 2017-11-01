@@ -7,9 +7,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 import com.max.simpleweather.model.City;
 
-/**
- * @author Artur Vasilov
- */
 public interface WeatherService {
 
     @GET("data/2.5/weather?units=metric")

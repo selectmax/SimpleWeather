@@ -8,9 +8,6 @@ import okhttp3.Request;
 import okhttp3.Response;
 import com.max.simpleweather.BuildConfig;
 
-/**
- * @author Artur Vasilov
- */
 public class ApiKeyInterceptor implements Interceptor {
 
     @Override

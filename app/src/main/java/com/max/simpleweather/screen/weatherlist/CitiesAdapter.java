@@ -12,9 +12,6 @@ import java.util.List;
 import com.max.simpleweather.R;
 import com.max.simpleweather.model.City;
 
-/**
- * @author Artur Vasilov
- */
 public class CitiesAdapter extends RecyclerView.Adapter<CityHolder> {
 
     private final List<City> mCities;

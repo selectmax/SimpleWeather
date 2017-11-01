@@ -2,9 +2,11 @@
 <resources>
 
     <string-array name="initial_cities">
+        <item>Saint-Petersburg</item>
         <item>Kazan</item>
         <item>Moscow</item>
         <item>London</item>
+        <item>Paris</item>
         <item>Washington</item>
         <item>Berlin</item>
     </string-array>

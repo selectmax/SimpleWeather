@@ -10,9 +10,6 @@ import butterknife.ButterKnife;
 import com.max.simpleweather.R;
 import com.max.simpleweather.model.City;
 
-/**
- * @author Artur Vasilov
- */
 public class CityHolder extends RecyclerView.ViewHolder {
 
     @BindView(R.id.city_name)

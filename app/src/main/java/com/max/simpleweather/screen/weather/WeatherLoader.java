@@ -9,9 +9,6 @@ import java.io.IOException;
 import com.max.simpleweather.model.City;
 import com.max.simpleweather.network.ApiFactory;
 
-/**
- * @author Artur Vasilov
- */
 public class WeatherLoader extends AsyncTaskLoader<City> {
 
     private final String mCityName;
